@@ -1,9 +1,12 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 def allureVersion = "2.16.0"
 def aspectJVersion = '1.9.21'
+def ktorVersion = "2.3.11"
+
 configurations {
     agent {
         canBeResolved = true
@@ -63,6 +66,9 @@ android {
         viewBinding = true
     }
     namespace 'ml.docilealligator.infinityforreddit'
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 }
 
 dependencies {
@@ -74,6 +80,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.activity:activity:1.9.0'
+    implementation 'androidx.core:core-ktx:1.16.0'
     def lifecycleVersion = "2.7.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycleVersion"
@@ -210,4 +217,19 @@ dependencies {
     testImplementation platform("io.qameta.allure:allure-bom:$allureVersion")
     testImplementation "io.qameta.allure:allure-junit5"
     agent "org.aspectj:aspectjweaver:$aspectJVersion"
+
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
+    implementation("io.ktor:ktor-client-encoding:$ktorVersion")
+
+    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-jackson:$ktorVersion")
+
+    implementation("ch.qos.logback:logback-classic:1.4.12")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
 }
