@@ -12,6 +12,11 @@ import io.qameta.allure.Description
 import io.qameta.allure.Feature
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
 
 @Feature("Тестирование API")
@@ -59,7 +64,7 @@ class NumbersApiTests {
         runBlocking {
             val response = client.get("42.2/math")
             assertTrue(response.status.equals(HttpStatusCode.BadRequest))
-            assertEquals(response.body(), "Invalid url")
+            assertEquals(response.bodyAsText(), "Invalid url")
         }
     }
 
