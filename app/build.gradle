@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id("io.qameta.allure") version "2.12.0"
 }
 
 android {
@@ -38,6 +40,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 
     lint {
         disable 'MissingTranslation'
@@ -54,6 +62,9 @@ android {
         viewBinding = true
     }
     namespace 'ml.docilealligator.infinityforreddit'
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 }
 
 dependencies {
@@ -65,6 +76,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.activity:activity:1.9.0'
+    //implementation 'androidx.core:core-ktx:1.16.0'
     def lifecycleVersion = "2.7.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycleVersion"
@@ -197,4 +209,12 @@ dependencies {
 /**** Builds and flavors ****/
     // debugImplementation because LeakCanary should only run in debug builds.
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:x.y'
+
+    debugImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
+    debugImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.mockito:mockito-core:5.0.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.0.0'
+    testImplementation 'org.mockito:mockito-inline:5.0.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.0.0'
 }
+
