@@ -49,12 +49,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-        unitTests.all {
-            useJUnitPlatform()
-        }
-    }
 
     lint {
         disable 'MissingTranslation'
@@ -66,11 +60,19 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
     buildFeatures {
         buildConfig = true
         viewBinding = true
     }
     namespace 'ml.docilealligator.infinityforreddit'
+
     kotlinOptions {
         jvmTarget = '11'
     }
